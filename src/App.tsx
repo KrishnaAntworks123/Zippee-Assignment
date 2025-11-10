@@ -1,13 +1,5 @@
-import { useState } from 'react'
+import CharactersPage from "./pages/CharactersPage";
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <div>
-      Hello
-    </div>
-  )
+export default function App() {
+  return <CharactersPage />;
 }
-
-export default App
