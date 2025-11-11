@@ -5,8 +5,15 @@ import SkeletonCard from "../components/SkeletonCard";
 import { characterImage } from "../utils/image";
 import { CharacterExpandableCard } from "../components/CharacterCard";
 import { FetchData } from "../utils/api";
+import { useAuth } from "../hooks/useAuth";
+import { Navigate } from "react-router-dom"
 
 export default function CharactersPage() {
+    const { token } = useAuth()
+    console.log("Current token:", token);
+
+    if (!token) return <Navigate to="/login" replace />
+
     const [page, setPage] = useState(1);
     const [CharacterData, setCharacterData] = useState<any[]>([]);
     const [searchTerm, setSearchTerm] = useState("");
@@ -162,7 +169,7 @@ export default function CharactersPage() {
                             setSelectedSpecies("");
                             setSelectedFilm("");
                         }}
-                        className="px-4 py-2 border rounded-xl hover:bg-gray-100 transition"
+                        className="px-6 py-2 rounded-lg text-sm font-medium text-white transition hover:bg-red-700 disabled:opacity-70 bg-red-800"
                     >
                         Clear
                     </button>
@@ -171,15 +178,15 @@ export default function CharactersPage() {
                 <div className="flex gap-2 justify-between sm:justify-end">
                     <button
                         onClick={() => setPage((p) => Math.max(1, p - 1))}
-                        className="px-4 py-2 border rounded-xl hover:bg-gray-100 transition"
                         disabled={page === 1}
+                        className={`px-4 py-2 rounded-lg text-sm font-medium text-white transition bg-red-600 hover:bg-red-800 disabled:opacity-70 ${page === 1 ? "cursor-not-allowed" : "cursor-pointer"}`}
                     >
                         ← Prev
                     </button>
 
                     <button
                         onClick={() => setPage((p) => p + 1)}
-                        className="px-4 py-2 border rounded-xl hover:bg-gray-100 transition"
+                        className="px-4 py-2 rounded-lg bg-indigo-600 text-sm font-medium text-white transition hover:bg-indigo-700 disabled:opacity-70"
                     >
                         Next →
                     </button>
