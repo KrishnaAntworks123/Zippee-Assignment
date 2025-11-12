@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo } from "react";
-import { Menu, X } from "lucide-react"; // 👈 use lucide-react for icons
+import { Menu, X } from "lucide-react";
 import { useCharacters } from "../hooks";
 import SkeletonCard from "../components/SkeletonCard";
 import { characterImage } from "../utils/image";
